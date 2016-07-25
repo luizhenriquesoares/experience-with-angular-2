@@ -9,6 +9,11 @@ var TaskService = (function () {
     TaskService.prototype.getTasks = function () {
         return task_data_1.TASKS;
     };
+    TaskService.prototype.getTask = function (id) {
+        return task_data_1.TASKS.filter(function (task) {
+            return task.id == id;
+        })[0];
+    };
     return TaskService;
 }());
 exports.TaskService = TaskService;

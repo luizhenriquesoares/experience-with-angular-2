@@ -3,9 +3,11 @@
  */
 
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router-deprecated';
 import {Task} from './task';
 import {TaskService} from './task.service';
 import {TaskEditComponent} from './task-edit.component';
+
 
 @Component({
     selector: 'task-list',
@@ -26,7 +28,7 @@ export class TaskListComponent implements OnInit{
     /**
      * @param taskService
      */
-    constructor(private taskService: TaskService){}
+    constructor(private taskService: TaskService, private router: Router){}
 
     ngOnInit():any{
         this.getTasks();
@@ -35,6 +37,6 @@ export class TaskListComponent implements OnInit{
         this.tasks = this.taskService.getTasks();
     }
     onClick(task){
-        this.selectedTask = task;
+        this.router.navigate(['Task.edit',{id: task.id}])
     }
 }

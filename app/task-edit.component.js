@@ -13,9 +13,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var task_1 = require('./task');
+var task_service_1 = require("./task.service");
+var router_deprecated_1 = require("@angular/router-deprecated");
 var TaskEditComponent = (function () {
-    function TaskEditComponent() {
+    function TaskEditComponent(route, routeParams, taskService) {
+        this.route = route;
+        this.routeParams = routeParams;
+        this.taskService = taskService;
     }
+    TaskEditComponent.prototype.ngOnInit = function () {
+        this.getTask();
+    };
+    TaskEditComponent.prototype.getTask = function () {
+        var id = this.routeParams.get('id');
+        this.task = this.taskService.getTask(id);
+    };
+    TaskEditComponent.prototype.goToTaskList = function () {
+        this.route.navigate(['Task.List']);
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', task_1.Task)
@@ -23,9 +38,9 @@ var TaskEditComponent = (function () {
     TaskEditComponent = __decorate([
         core_1.Component({
             selector: 'task-edit',
-            template: "\n               <div *ngIf=\"task\">\n                    <input type=\"text\" [(ngModel)]=\"task.name\" />\n                </div>"
+            template: "\n                <h3>Edita\u00E7\u00E3o de Tarafa</h3>    \n               <div *ngIf=\"task\">\n                    <input type=\"text\" [(ngModel)]=\"task.name\" />\n                    <button type=\"button\" (click)=\"goToTaskList\">Salvar</button>\n                </div>"
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_deprecated_1.Router, router_deprecated_1.RouteParams, task_service_1.TaskService])
     ], TaskEditComponent);
     return TaskEditComponent;
 }());

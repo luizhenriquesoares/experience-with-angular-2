@@ -10,5 +10,11 @@ export class TaskService {
     getTasks():Task[]{
         return TASKS;
     }
+
+    getTask(id:string | number){
+        return TASKS.filter(function (task) {
+            return task.id == id;
+        })[0];
+    }
 }
 

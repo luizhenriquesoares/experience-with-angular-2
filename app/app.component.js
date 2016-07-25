@@ -11,13 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var task_list_components_1 = require('./task-list.components');
+var task_edit_component_1 = require('./task-edit.component');
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'Lista de Tarefas';
     }
     AppComponent = __decorate([
         router_deprecated_1.RouteConfig([
-            { path: '/task/list', name: 'Task.list', component: task_list_components_1.TaskListComponent }
+            { path: '/task/list', name: 'Task.list', component: task_list_components_1.TaskListComponent },
+            { path: '/task/:id/edit', name: 'Task.edit', component: task_edit_component_1.TaskEditComponent }
         ]),
         core_1.Component({
             selector: 'my-app',

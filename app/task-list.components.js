@@ -12,14 +12,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_deprecated_1 = require('@angular/router-deprecated');
 var task_service_1 = require('./task.service');
 var task_edit_component_1 = require('./task-edit.component');
 var TaskListComponent = (function () {
     /**
      * @param taskService
      */
-    function TaskListComponent(taskService) {
+    function TaskListComponent(taskService, router) {
         this.taskService = taskService;
+        this.router = router;
     }
     TaskListComponent.prototype.ngOnInit = function () {
         this.getTasks();
@@ -28,7 +30,7 @@ var TaskListComponent = (function () {
         this.tasks = this.taskService.getTasks();
     };
     TaskListComponent.prototype.onClick = function (task) {
-        this.selectedTask = task;
+        this.router.navigate(['Task.edit', { id: task.id }]);
     };
     TaskListComponent = __decorate([
         core_1.Component({
@@ -37,7 +39,7 @@ var TaskListComponent = (function () {
             directives: [task_edit_component_1.TaskEditComponent],
             providers: [task_service_1.TaskService]
         }), 
-        __metadata('design:paramtypes', [task_service_1.TaskService])
+        __metadata('design:paramtypes', [task_service_1.TaskService, router_deprecated_1.Router])
     ], TaskListComponent);
     return TaskListComponent;
 }());
