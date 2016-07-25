@@ -15,7 +15,9 @@
         'compiler',
         'core',
         'platform-browser',
-        'platform-browser-dynamic'
+        'platform-browser-dynamic',
+        'router',
+        'router-deprecated'
     ];
 
     function packUmd(pkgName) {
